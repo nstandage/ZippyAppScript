@@ -3,6 +3,8 @@ function checkComplience() {
   var truckSheet = spreadsheet.getSheetByName("Trucks");
   var backendSheet = spreadsheet.getSheetByName("Backend");
   var truckArray = [];
+// clear old data
+clearPrintedData(backendSheet);
 
 // check to see if row is complient. If so, add name to array
 truckArray = getTruckArray(truckSheet);
@@ -42,4 +44,18 @@ function printComplientTrucks(truckArray, backendSheet) {
       backendSheet.getRange(row, column).setValue(truckArray[i]);
       row++;
     }
+}
+
+
+function clearPrintedData(backendSheet) {
+  var row = 2;
+  var column = 1;
+
+  var cell = backendSheet.getRange(row, column);
+
+  while (cell.getValue() != "") {
+    backendSheet.getRange(row, column).setValue("");
+    row++;
+    cell = backendSheet.getRange(row, column);
+  }
 }
