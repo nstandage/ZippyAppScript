@@ -57,7 +57,7 @@ function grabScheduledDates() {
 
   // variables for coordinates and array
   var row = 2;
-  var column = 6; //f
+  var column = 5; //E
   var scheduledDates = [];
   var backendSheet = SpreadsheetApp.getActive().getSheetByName("Backend");
 
@@ -69,21 +69,17 @@ function grabScheduledDates() {
   while (backendSheet.getRange(row, column).getValue() != "") {
     scheduledDates.push(grabScheduledDate(row, column, backendSheet));
 
-    row = row + 2;
-
+    row++;
   }
   return scheduledDates;
 }
 
 function grabScheduledDate(row, column, sheet) {
   var dateArray = [];
-  dateArray.push(sheet.getRange(row, column).getValue());
-  dateArray.push(sheet.getRange(row + 1, column).getValue());
-  dateArray.push(sheet.getRange(row, column + 1).getValue());
-  dateArray.push(sheet.getRange(row + 1, column + 1).getValue());
-  dateArray.push(sheet.getRange(row, column + 2).getValue());
-  dateArray.push(sheet.getRange(row + 1, column + 2).getValue());
 
+  for (i=0; i < 6; i++) {
+    dateArray.push(sheet.getRange(row, column + i).getValue());
+  }
   return dateArray;
 
 }
@@ -94,7 +90,7 @@ function removeExpiredData() {
   //create today's date variable
   for (i = 0; i < scheduledDates.length; i++) {
 
-    var date = new Date(scheduledDates[i][4]);
+    var date = new Date(scheduledDates[i][2]);
 
     if (date < yesterday) {
        delete scheduledDates[i];
@@ -108,14 +104,14 @@ function removeExpiredData() {
 function writeScheduledDates(scheduledDates) {
   var sheet = SpreadsheetApp.getActive().getSheetByName("Backend");
   var row = 2;
-  var column = 6;
+  var column = 5;
   wipeScheduledDates();
 
   for (j = 0; j < scheduledDates.length; j++) {
 
     if (scheduledDates[j] != undefined) {
       writeDate(row, column, scheduledDates[j], sheet);
-      row = row + 2;
+      row++;
     }
 
   }
@@ -124,35 +120,14 @@ function writeScheduledDates(scheduledDates) {
 function writeDate(row, column, scheduledDate, sheet) {
 
   for (i = 0; i < 6; i++) {
-
-    switch (i) {
-      case 0:
-        sheet.getRange(row, column).setValue(scheduledDate[i]);
-        break;
-      case 1:
-        sheet.getRange(row+1, column).setValue(scheduledDate[i]);
-        break;
-      case 2:
-        sheet.getRange(row, column+1).setValue(scheduledDate[i]);
-        break;
-      case 3:
-        sheet.getRange(row+1, column+1).setValue(scheduledDate[i]);
-        break;
-      case 4:
-        sheet.getRange(row, column+2).setValue(scheduledDate[i]);
-        break;
-      case 5:
-        sheet.getRange(row+1, column+2).setValue(scheduledDate[i]);
-        break;
-    }
-
+    sheet.getRange(row, column + i).setValue(scheduledDate[i]);
   }
 
 
 }
 
 function wipeScheduledDates() {
-  SpreadsheetApp.getActive().getSheetByName("Backend").getRange(2, 6, 500, 3).setValue("");
+  SpreadsheetApp.getActive().getSheetByName("Backend").getRange(2, 5, 500, 6).setValue("");
 }
 
 function print(string) {
