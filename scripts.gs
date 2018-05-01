@@ -50,12 +50,44 @@ function printComplientTrucks(truckArray, backendSheet) {
 function clearPrintedData(backendSheet) {
   var row = 2;
   var column = 1;
+  var numberOfRows = 200;
 
-  var cell = backendSheet.getRange(row, column);
+  backendSheet.getRange(row, column, numberOfRows).setValue("");
 
-  while (cell.getValue() != "") {
-    backendSheet.getRange(row, column).setValue("");
-    row++;
-    cell = backendSheet.getRange(row, column);
+}
+
+
+
+function grabSelectedDates() {
+
+// variables for coordinates and array
+var row = 2;
+var column = 6; //f
+var selectedDates = [];
+var backendSheet = SpreadsheetApp.getActive().getSheetByName("Backend");
+
+if (backendSheet.getRange(row, column).getValue() == "") {
+  SpreadsheetApp.getUi().alert("grabSelectedDates Failed. Please try again.");
+  return;
+}
+//iterate through data and add to selectedDates
+  while (backendSheet.getRange(row, column).getValue() != "") {
+    selectedDates.push(grabDate(row, column, backendSheet));
+
+    row = row + 2;
+
   }
+}
+
+function grabDate(row, column, sheet) {
+  var dateArray = [];
+  dateArray.push(sheet.getRange(row, column).getValue());
+  dateArray.push(sheet.getRange(row+1, column).getValue());
+  dateArray.push(sheet.getRange(row, column+1).getValue());
+  dateArray.push(sheet.getRange(row+1, column+1).getValue());
+  dateArray.push(sheet.getRange(row, column+2).getValue());
+  dateArray.push(sheet.getRange(row+1, column+2).getValue());
+
+  return dateArray;
+
 }
