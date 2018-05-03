@@ -53,7 +53,7 @@ function clearPrintedData(backendSheet) {
 
 }
 
-function grabScheduledDates() {
+function getScheduledDates() {
 
   // variables for coordinates and array
   var row = 2;
@@ -62,19 +62,19 @@ function grabScheduledDates() {
   var backendSheet = SpreadsheetApp.getActive().getSheetByName("Backend");
 
   if (backendSheet.getRange(row, column).getValue() == "") {
-    SpreadsheetApp.getUi().alert("grabScheduledDates Failed. Please try again.");
+    SpreadsheetApp.getUi().alert("getScheduledDates Failed. Please try again.");
     return;
   }
   //iterate through data and add to selectedDates
   while (backendSheet.getRange(row, column).getValue() != "") {
-    scheduledDates.push(grabScheduledDate(row, column, backendSheet));
+    scheduledDates.push(getScheduledDate(row, column, backendSheet));
 
     row++;
   }
   return scheduledDates;
 }
 
-function grabScheduledDate(row, column, sheet) {
+function getScheduledDate(row, column, sheet) {
   var dateArray = [];
 
   for (i=0; i < 6; i++) {
@@ -85,7 +85,7 @@ function grabScheduledDate(row, column, sheet) {
 }
 
 function removeExpiredData() {
-  var scheduledDates = grabScheduledDates();
+  var scheduledDates = getScheduledDates();
   var yesterday = new Date(Date.now() - 86400000);
   //create today's date variable
   for (i = 0; i < scheduledDates.length; i++) {
@@ -113,7 +113,6 @@ function writeScheduledDates(scheduledDates) {
       writeDate(row, column, scheduledDates[j], sheet);
       row++;
     }
-
   }
 }
 
@@ -123,7 +122,6 @@ function writeDate(row, column, scheduledDate, sheet) {
     sheet.getRange(row, column + i).setValue(scheduledDate[i]);
   }
 
-
 }
 
 function wipeScheduledDates() {
@@ -132,4 +130,69 @@ function wipeScheduledDates() {
 
 function print(string) {
   Logger.log(string);
+}
+
+
+
+function checkAvailability() {
+var proposedDate = getProposedDate();
+//variables
+var scheduledDates = getScheduledDates();
+var compliantShells = getShellArray(SpreadsheetApp.getActive().getSheetByName("Shells"));
+var unavailableDates = [];
+var availableShells = [];
+
+
+//check propsed out date against scheduled in dates
+for (i = 0; i < scheduledDates.length; i++) {
+
+  if (proposedDate[1] < scheduledDates[i][2]) {
+    unavailableDates.push(scheduledDates[i]);
+  }
+}
+
+
+//check proposed in date against scheduled out Dates. save overlaps in array
+for (j = 0; j < scheduledDates.length; j++) {
+
+  if (proposedDate[2] < scheduledDates[j][1]) {
+    unavailableDates.push(scheduledDates[j]);
+  }
+}
+
+
+
+// check unavailable dates against compliant shells
+for (k = 0; k < unavailableDates.length; k++) {
+
+  for (l = 0; l < compliantShells.length; l++) {
+
+    if (unavailableDates[k][4] == compliantShells[l]) {
+        compliantShells[l] = null;
+    }
+  }
+}
+//transfer compliant shells to available shells.
+for (m = 0; m < compliantShells.length; m++) {
+  if (compliantShells[m] != null) {
+    availableShells.pop(compliantShells[m])
+  }
+}
+// paste available shells in availble shells
+  writeAvailableShells(availableShells);
+}
+
+
+function writeAvailableShells(availableShells) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName("Backend");
+  var ranges = sheet.getRange(2, 3, 1, 500);
+  var row = 2;
+  var column = 3;
+  //var range = sheet.getRange(2, 3);
+  ranges.setValue("");
+
+  for (i = 0; i < availableShells.length; i++) {
+    sheet.getRange(row, column).setValue(availableShells[i]);
+    row++;
+  }
 }
