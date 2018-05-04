@@ -142,26 +142,24 @@ var compliantShells = getShellArray(SpreadsheetApp.getActive().getSheetByName("S
 var unavailableDates = [];
 var availableShells = [];
 
-
 //check propsed out date against scheduled in dates
 for (i = 0; i < scheduledDates.length; i++) {
 
   if (proposedDate[1] < scheduledDates[i][2]) {
-    unavailableDates.push(scheduledDates[i]);
+    if (proposedDate[1] > scheduledDates[i][1]) {
+      unavailableDates.push(scheduledDates[i]);
+    }
   }
 }
-
-
 //check proposed in date against scheduled out Dates. save overlaps in array
 for (j = 0; j < scheduledDates.length; j++) {
 
-  if (proposedDate[2] < scheduledDates[j][1]) {
-    unavailableDates.push(scheduledDates[j]);
+  if (proposedDate[3] > scheduledDates[j][1]) {
+    if (proposedDate[3] < scheduledDates[j][2]) {
+      unavailableDates.push(scheduledDates[j]);
+    }
   }
 }
-
-
-
 // check unavailable dates against compliant shells
 for (k = 0; k < unavailableDates.length; k++) {
 
@@ -175,7 +173,7 @@ for (k = 0; k < unavailableDates.length; k++) {
 //transfer compliant shells to available shells.
 for (m = 0; m < compliantShells.length; m++) {
   if (compliantShells[m] != null) {
-    availableShells.pop(compliantShells[m])
+    availableShells.push(compliantShells[m]);
   }
 }
 // paste available shells in availble shells
@@ -185,7 +183,7 @@ for (m = 0; m < compliantShells.length; m++) {
 
 function writeAvailableShells(availableShells) {
   var sheet = SpreadsheetApp.getActive().getSheetByName("Backend");
-  var ranges = sheet.getRange(2, 3, 1, 500);
+  var ranges = sheet.getRange(2, 3, 500, 1);
   var row = 2;
   var column = 3;
   //var range = sheet.getRange(2, 3);

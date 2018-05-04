@@ -1,6 +1,6 @@
 
 
-function checkShellComplience() {
+function checkShellCompliance() {
   var spreadsheet = SpreadsheetApp.getActive();
   var shellSheet = spreadsheet.getSheetByName("Shells");
   var backendSheet = spreadsheet.getSheetByName("Backend");
@@ -9,11 +9,11 @@ function checkShellComplience() {
 //Clear data before updating
   clearShellData(backendSheet);
 
-// check to see if row is complient. If so, add name to array
+// check to see if row is compliant. If so, add name to array
 shellArray = getShellArray(shellSheet);
 
-//Go to database sheet, print array to complient Shells
-printComplientShells(shellArray, backendSheet);
+//Go to database sheet, print array to compliant Shells
+printCompliantShells(shellArray, backendSheet);
 
 }
 function clearShellData(backendSheet) {
@@ -27,12 +27,12 @@ function clearShellData(backendSheet) {
 function getShellArray(sheet)  {
   var array = [];
   var row = 2;
-  var complientColumn = 18;
+  var compliantColumn = 18;
   var nameColumn = 1;
   var cell = sheet.getRange(row, nameColumn); // first nameColumn
 
   while (cell.getValue() != "") {
-    if (sheet.getRange(row, complientColumn).getValue() == "Yes") {
+    if (sheet.getRange(row, compliantColumn).getValue() == "Yes") {
       array.push(sheet.getRange(row, nameColumn).getValue());
     }
 
@@ -40,12 +40,10 @@ function getShellArray(sheet)  {
   cell = sheet.getRange(row, nameColumn);
   }
 
-Logger.log(array);
-
     return array;
 }
 
-function printComplientShells(shellArray, backendSheet) {
+function printCompliantShells(shellArray, backendSheet) {
   var row = 2;
   var column = 2;
 
@@ -59,26 +57,36 @@ function printComplientShells(shellArray, backendSheet) {
 
 
 function getProposedDate() {
-  var sheet = SpreadsheetApp.getActive();
-  var scheduleSheet = sheet.getSheetByName("Schedule");
+  var spreadsheet = SpreadsheetApp.getActive();
+  var scheduleSheet = spreadsheet.getSheetByName("Schedule");
   var selectedRow = scheduleSheet.getRange(1, 9);
-  var array = [];
-  var rawData = scheduleSheet.getRange(selectedRow.getValue(), 1, 1,8).getValues();
-
-  Logger.log(rawData);
+  selectedRow = selectedRow.getValue();
+  var rawData = [];
+  for (var column = 1; column < 9 ; column++) {
+    var cellRange = scheduleSheet.getRange(selectedRow, column);
+    rawData.push(cellRange.getValue());
+  }
 
   return rawData;
 }
 
-function writeToBackend(data) {
+function linkDateTime(data) {
   var rawArray = data;
-  var dateTime = [];
+  var dateTime = rawArray[1];
+  var timeBlock = rawArray[2];
   var arrayNoDateTime = [];
   var sortedArray = [];
 
-
+  Logger.log(dateTime);
+  Logger.log(timeBlock);
 }
 
 function print(string) {
   Logger.log(string);
+}
+
+function testJoshua() {
+  var rawData = getProposedDate();
+  linkDateTime(rawData);
+
 }
