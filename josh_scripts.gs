@@ -1,5 +1,3 @@
-
-
 function checkShellCompliance() {
   var spreadsheet = SpreadsheetApp.getActive();
   var shellSheet = spreadsheet.getSheetByName("Shells");
@@ -39,9 +37,6 @@ function getShellArray(sheet) {
     row++;
     cell = sheet.getRange(row, nameColumn);
   }
-
-
-
   return array;
 }
 

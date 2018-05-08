@@ -205,15 +205,24 @@ const newDate = getProposedDate();
 writeDate(getNextAvailableBackendRow(), 5, newDate, SpreadsheetApp.getActive().getSheetByName("Backend"));
 
 //row, column, scheduledDate, sheet
+
+
 }
 
 
 function getNextAvailableBackendRow() {
-  var row = 0;
-  const column = 0;
+  var row = 2;
+  const column = 5;
+  var i = 0
+
+  while (SpreadsheetApp.getActive().getSheetByName("Backend").getRange(row + i, column).getValue() != 0) {
+
+    i++;
+  }
+  
+  
 
 
-
-
-  return row;
+  return row + i;
 }
+
