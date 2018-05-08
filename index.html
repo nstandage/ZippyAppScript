@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <base target="_top">
     <?!= include('stylesheet'); ?>
-  </head>
-  <body>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+
+<body>
+    <div>
+        <br>
+        <br>
+        <h1>Zippy Shell</h1>
+        <h2>Asset Scheduler</h2>
+        <br>
+        <br>
+    </div>
+
+    <form>
+        <div class="grid-container">
+            <div class="grid-item outDate">
+                Client Name:<br>
+                <input type="text" name="clientName">
+                <br><br><br> 
+                Out Date:<br>
+                <input type="date" name="outDate"><br>
+                <br> Out Time:<br>
+                <select>
+                    <option value="select">*Select*</option>
+                    <option value="earlyMorning">Early Morning</option>
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="lateAfternoon">Late Afternoon</option>
+                </select><br><br>
+
+            </div>
+            <div class="grid-item inDate">
+                In Date:<br>
+                <input type="date" name="outDate"><br>
+                <br> In Time:<br>
+                <select>
+                    <option value="select">*Select*</option>
+                    <option value="earlyMorning">Early Morning</option>
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="lateAfternoon">Late Afternoon</option>
+                </select><br><br>
+                Coordinator:<br>
+                <input type="text" name="coordinator"><br><br>
+            </div>
+            <div class="grid-item submit">
+                <button type="submit">Check Availability</button><br><br>
+
+                <select name="availableTrucks" size="1"><br><br>
+                    <option value="select">*Select*</option>
+                    <option value="T1">T1</option>
+                    <option value="T2">T2</option>
+                    <option value="T3">T3</option>
+                    <option value="T4">T4</option>
+                </select><br><br>
+                <select name="availableShells" size="1">
+                    <option value="select">*Select*</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                    <option value="S4">S4</option>
+                </select><br><br>
+
+                <button type="submit">Schedule</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
     <?!= include('frontEndScripts'); ?>
-  </body>
+</body>
+
 </html>
-
-
-
