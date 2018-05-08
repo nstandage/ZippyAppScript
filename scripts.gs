@@ -194,3 +194,26 @@ function writeAvailableShells(availableShells) {
     row++;
   }
 }
+
+function saveScheduledDate() {
+
+//gather row
+const newDate = getProposedDate();
+
+//save to backend
+
+writeDate(getNextAvailableBackendRow(), 5, newDate, SpreadsheetApp.getActive().getSheetByName("Backend"));
+
+//row, column, scheduledDate, sheet
+}
+
+
+function getNextAvailableBackendRow() {
+  var row = 0;
+  const column = 0;
+
+
+
+
+  return row;
+}
