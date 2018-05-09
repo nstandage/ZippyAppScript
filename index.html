@@ -21,12 +21,12 @@
         <div class="grid-container">
             <div class="grid-item outDate">
                 Client Name:<br>
-                <input type="text" name="clientName">
+                <input type="text" name="clientName" id="clientNameTextbox">
                 <br><br><br> 
                 Out Date:<br>
-                <input type="date" name="outDate"><br>
+                <input type="date" name="outDate" id="outDateTextbox"><br>
                 <br> Out Time:<br>
-                <select>
+                <select id="outTimeDropdown">
                     <option value="select">*Select*</option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
@@ -37,9 +37,9 @@
             </div>
             <div class="grid-item inDate">
                 In Date:<br>
-                <input type="date" name="outDate"><br>
+                <input type="date" name="inDate" id="inDateTextbox"><br>
                 <br> In Time:<br>
-                <select>
+                <select id="inTimeDropdown">
                     <option value="select">*Select*</option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
@@ -47,19 +47,19 @@
                     <option value="lateAfternoon">Late Afternoon</option>
                 </select><br><br>
                 Coordinator:<br>
-                <input type="text" name="coordinator"><br><br>
+                <input type="text" name="coordinator" id="coordinatorTextbox"><br><br>
             </div>
             <div class="grid-item submit">
-                <button type="submit">Check Availability</button><br><br>
+                <button type="submit" id="checkAvailabilityButton">Check Availability</button><br><br>
 
-                <select name="availableTrucks" size="1"><br><br>
+                <select name="availableTrucks" size="1" id="trucksDropdown"><br><br>
                     <option value="select">*Select*</option>
                     <option value="T1">T1</option>
                     <option value="T2">T2</option>
                     <option value="T3">T3</option>
                     <option value="T4">T4</option>
                 </select><br><br>
-                <select name="availableShells" size="1">
+                <select name="availableShells" size="1" id="shellsDropdown">
                     <option value="select">*Select*</option>
                     <option value="S1">S1</option>
                     <option value="S2">S2</option>
@@ -67,14 +67,14 @@
                     <option value="S4">S4</option>
                 </select><br><br>
 
-                <button type="submit">Schedule</button>
+                <button type="submit" id="scheduleButton">Schedule</button>
             </div>
         </div>
     </form>
 
 
 
-
+    <script src="frontEndScripts.js"></script>
     <?!= include('frontEndScripts'); ?>
 </body>
 

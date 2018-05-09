@@ -226,3 +226,8 @@ function getNextAvailableBackendRow() {
   return row + i;
 }
 
+
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index');
+}
