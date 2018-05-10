@@ -2,80 +2,75 @@
 <html>
 
 <head>
-    <base target="_top">
-    <?!= include('stylesheet'); ?>
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <base target="_top">
+  <?!= include('stylesheet'); ?>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
 <body>
-    <div>
-        <br>
-        <br>
-        <h1>Zippy Shell</h1>
-        <h2>Asset Scheduler</h2>
-        <br>
-        <br>
-    </div>
+  <div>
+    <h1>Zippy Shell</h1>
+    <h2>Asset Scheduler</h2>
+  </div>
 
-    <form>
-        <div class="grid-container">
-            <div class="grid-item outDate">
-                Client Name:<br>
-                <input type="text" name="clientName" id="clientNameTextbox">
-                <br><br><br> 
-                Out Date:<br>
-                <input type="date" name="outDate" id="outDateTextbox"><br>
-                <br> Out Time:<br>
-                <select id="outTimeDropdown">
-                    <option value="select">*Select*</option>
+  <form>
+
+
+    <p>Client Name:</p>
+    <input type="text" name="clientName" id="clientNameTextbox">
+    <p>Out Date:</p>
+    <input type="date" name="outDate" id="outDateTextbox">
+    <p>Out Time:</p>
+    <select id="outTimeDropdown">
+                    <option value="select"><em>Select</em></option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
                     <option value="afternoon">Afternoon</option>
                     <option value="lateAfternoon">Late Afternoon</option>
-                </select><br><br>
+                </select>
 
-            </div>
-            <div class="grid-item inDate">
-                In Date:<br>
-                <input type="date" name="inDate" id="inDateTextbox"><br>
-                <br> In Time:<br>
-                <select id="inTimeDropdown">
-                    <option value="select">*Select*</option>
+
+
+    <p>In Date:</p>
+    <input type="date" name="inDate" id="inDateTextbox">
+    <p>In Time:</p>
+    <select id="inTimeDropdown">
+                    <option value="select"><em>Select</em></option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
                     <option value="afternoon">Afternoon</option>
                     <option value="lateAfternoon">Late Afternoon</option>
-                </select><br><br>
-                Coordinator:<br>
-                <input type="text" name="coordinator" id="coordinatorTextbox"><br><br>
-            </div>
-            <div class="grid-item submit">
-                <button type="submit" id="checkAvailabilityButton">Check Availability</button><br><br>
+                </select>
+    <p>Coordinator:</p>
+    <input type="text" name="coordinator" id="coordinatorTextbox">
 
-                <select name="availableTrucks" size="1" id="trucksDropdown"><br><br>
-                    <option value="select">*Select*</option>
+
+    <button type="submit" id="checkAvailabilityButton">Check Availability</button>
+
+    <select name="availableTrucks" size="1" id="trucksDropdown">
+                    <option value="select"><em>Select</em></option>
                     <option value="T1">T1</option>
                     <option value="T2">T2</option>
                     <option value="T3">T3</option>
                     <option value="T4">T4</option>
-                </select><br><br>
-                <select name="availableShells" size="1" id="shellsDropdown">
-                    <option value="select">*Select*</option>
+                </select>
+    <select name="availableShells" size="1" id="shellsDropdown">
+                    <option value="select"><em>Select</em></option>
                     <option value="S1">S1</option>
                     <option value="S2">S2</option>
                     <option value="S3">S3</option>
                     <option value="S4">S4</option>
-                </select><br><br>
+                </select>
 
-                <button type="submit" id="scheduleButton">Schedule</button>
-            </div>
-        </div>
-    </form>
+    <button type="submit" id="scheduleButton">Schedule</button>
 
 
+  </form>
 
-    <script src="frontEndScripts.js"></script>
-    <?!= include('frontEndScripts'); ?>
+
+
+  <script src="frontEndScripts.js"></script>
+  <?!= include('frontEndScripts'); ?>
 </body>
 
 </html>
