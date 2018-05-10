@@ -1,11 +1,24 @@
-h1 {
-    
-    color: rgb(34, 83, 126);
-    font-size: 42pt;
-}
-
-h2 {
-
-    color: rgb(121, 188, 188);
-    font-size: 22pt;
-}
+h1 {color: rgb(34, 83, 126);font-size: 42pt;}
+h2 {color: rgb(121, 188, 188);font-size: 22pt;}
+body {padding: 0; margin: 0;}
+/* grid styling */
+.grid-wrapper {display: grid; height: 700px; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(6, 1fr)}
+.logo {grid-column: 1/6; grid-row: 1/2;}
+.formLayout {grid-column: 1/6; grid-row: 2/7; display: grid; grid-template-columns: inherit; grid-template-rows: repeat(6, 1fr)}
+.clientNameForm {grid-column: 3/4; grid-row: 1/2;}
+.outForm {grid-column: 2/3; grid-row: 2/4;}
+.inForm {grid-column: 4/5; grid-row: 2/4;}
+.coordinatorNameForm {grid-column: 3/4; grid-row: 4/5;}
+.submitFormLayout {grid-column: 3/4; grid-row: 5/7;}
+/* end grid styling */
+/* layout styling */
+.logo {text-align: center;}
+.clientNameForm {text-align: center;}
+.outForm {text-align: center;}
+.inForm {text-align: center;}
+.coordinatorNameForm {text-align: center;}
+.submitFormLayout {text-align: center;}
+.submitFormLayoutSpacing {margin-top: 5%;}
+/* end layout styling */
+/* Appearance Style */
+.buttonStyle {}

@@ -8,65 +8,72 @@
 </head>
 
 <body>
-  <div>
-    <h1>Zippy Shell</h1>
-    <h2>Asset Scheduler</h2>
-  </div>
+  <div class="grid-wrapper">
+    <div class="logo">
+      <h1>Zippyshell</h1>
+      <h2>Asset Scheduler</h2>
+    </div>
 
-  <form>
+    <form class="formLayout">
 
-
-    <p>Client Name:</p>
-    <input type="text" name="clientName" id="clientNameTextbox">
-    <p>Out Date:</p>
-    <input type="date" name="outDate" id="outDateTextbox">
-    <p>Out Time:</p>
-    <select id="outTimeDropdown">
+      <div class="clientNameForm">
+        <p>Client Name:</p>
+        <input type="text" name="clientName" id="clientNameTextbox">
+      </div>
+      <div class="outForm">
+        <p>Out Date:</p>
+        <input type="date" name="outDate" id="outDateTextbox">
+        <p>Out Time:</p>
+        <select id="outTimeDropdown">
                     <option value="select"><em>Select</em></option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
                     <option value="afternoon">Afternoon</option>
                     <option value="lateAfternoon">Late Afternoon</option>
                 </select>
+      </div>
 
-
-
-    <p>In Date:</p>
-    <input type="date" name="inDate" id="inDateTextbox">
-    <p>In Time:</p>
-    <select id="inTimeDropdown">
+      <div class="inForm">
+        <p>In Date:</p>
+        <input type="date" name="inDate" id="inDateTextbox">
+        <p>In Time:</p>
+        <select id="inTimeDropdown">
                     <option value="select"><em>Select</em></option>
                     <option value="earlyMorning">Early Morning</option>
                     <option value="morning">Morning</option>
                     <option value="afternoon">Afternoon</option>
                     <option value="lateAfternoon">Late Afternoon</option>
                 </select>
-    <p>Coordinator:</p>
-    <input type="text" name="coordinator" id="coordinatorTextbox">
+      </div>
+      <div class="coordinatorNameForm">
+        <p>Coordinator:</p>
+        <input type="text" name="coordinator" id="coordinatorTextbox">
+      </div>
 
-
-    <button type="submit" id="checkAvailabilityButton">Check Availability</button>
-
-    <select name="availableTrucks" size="1" id="trucksDropdown">
+      <div class="submitFormLayout">
+        <button class="buttonStyle submitFormLayoutSpacing" type="submit" id="checkAvailabilityButton">Check Availability</button>
+        <br>
+        <select class="submitFormLayoutSpacing" name="availableTrucks" size="1" id="trucksDropdown">
                     <option value="select"><em>Select</em></option>
                     <option value="T1">T1</option>
                     <option value="T2">T2</option>
                     <option value="T3">T3</option>
                     <option value="T4">T4</option>
                 </select>
-    <select name="availableShells" size="1" id="shellsDropdown">
+                <br>
+        <select class="submitFormLayoutSpacing" name="availableShells" size="1" id="shellsDropdown">
                     <option value="select"><em>Select</em></option>
                     <option value="S1">S1</option>
                     <option value="S2">S2</option>
                     <option value="S3">S3</option>
                     <option value="S4">S4</option>
                 </select>
+                <br>
+        <button class="buttonStyle submitFormLayoutSpacing" type="submit" id="scheduleButton">Schedule</button>
 
-    <button type="submit" id="scheduleButton">Schedule</button>
-
-
-  </form>
-
+      </div>
+    </form>
+  </div>
 
 
   <script src="frontEndScripts.js"></script>
