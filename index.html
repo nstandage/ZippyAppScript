@@ -2,9 +2,11 @@
 <html>
 
 <head>
+    <meta charset="utf-8"/>
     <base target="_top">
     <?!= include('stylesheet'); ?>
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script src="frontEndScripts.js"></script>
 </head>
 
 <body>
@@ -28,10 +30,10 @@
                 <br> Out Time:<br>
                 <select id="outTimeDropdown">
                     <option value="select">*Select*</option>
-                    <option value="earlyMorning">Early Morning</option>
-                    <option value="morning">Morning</option>
-                    <option value="afternoon">Afternoon</option>
-                    <option value="lateAfternoon">Late Afternoon</option>
+                    <option value="Early Morning">Early Morning</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Late Afternoon">Late Afternoon</option>
                 </select><br><br>
 
             </div>
@@ -41,33 +43,25 @@
                 <br> In Time:<br>
                 <select id="inTimeDropdown">
                     <option value="select">*Select*</option>
-                    <option value="earlyMorning">Early Morning</option>
-                    <option value="morning">Morning</option>
-                    <option value="afternoon">Afternoon</option>
-                    <option value="lateAfternoon">Late Afternoon</option>
+                    <option value="Early Morning">Early Morning</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Late Afternoon">Late Afternoon</option>
                 </select><br><br>
                 Coordinator:<br>
                 <input type="text" name="coordinator" id="coordinatorTextbox"><br><br>
             </div>
             <div class="grid-item submit">
-                <button type="submit" id="checkAvailabilityButton">Check Availability</button><br><br>
+                <button onclick="checkAvailability()" type="button" id="AvailabilityButton">Check Availability</button><br><br>
 
                 <select name="availableTrucks" size="1" id="trucksDropdown"><br><br>
                     <option value="select">*Select*</option>
-                    <option value="T1">T1</option>
-                    <option value="T2">T2</option>
-                    <option value="T3">T3</option>
-                    <option value="T4">T4</option>
                 </select><br><br>
                 <select name="availableShells" size="1" id="shellsDropdown">
                     <option value="select">*Select*</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                    <option value="S4">S4</option>
                 </select><br><br>
 
-                <button type="submit" id="scheduleButton">Schedule</button>
+                <button onclick="saveToSchedule()" type="button" id="scheduleButton">Schedule</button>
             </div>
         </div>
     </form>
