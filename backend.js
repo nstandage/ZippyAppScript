@@ -151,10 +151,10 @@ function checkAvailability(proposedDate) {
         }
     }
     //transfer compliant shells to available shells.
-    for (m = 0; m < compliantShells.length; m++) {
+   for (m = 0; m < compliantShells.length; m++) {
         if (compliantShells[m] != null) {
             availableShells.push(compliantShells[m]);
-        }
+       }
     }
     return availableShells;
 }
